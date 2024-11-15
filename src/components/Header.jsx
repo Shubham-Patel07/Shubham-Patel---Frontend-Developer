@@ -31,7 +31,8 @@ export default function Header() {
     },
     {
       icon: <CiDiscount1 />,
-      name: "Offers"
+      name: "Offers",
+      sup: "New"
     },
     {
       icon: <IoHelpBuoyOutline />,
@@ -76,6 +77,7 @@ export default function Header() {
                   return<li key={index} className='cursor-pointer flex hover:text-[#ff5200] items-center gap-2'>
                     {link.icon}
                     {link.name}
+                    <sup>{link.sup}</sup>
                   </li>
                 }
               )
