@@ -29,8 +29,14 @@ export default function TopMenu() {
                     <div className='cursor-pointer flex items-center justify-center w-[30px] h-[30px] bg-[#02060c26] rounded-full mx-2'><FaArrowRight /></div>
                 </div>
             </div>
-            <div className='flex'>
-                <Card />
+            <div className='flex gap-3 overflow-hidden'>
+                {
+                    data.map((cat,index) => {
+                        return(
+                            <Card {...cat} key={index} />
+                        )
+                    })
+                }
             </div>
         </div>
       )
