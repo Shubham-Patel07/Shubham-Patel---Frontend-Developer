@@ -52,7 +52,8 @@ export default function Header() {
     <>
       <div className='black-overlay w-full h-full fixed duration-500' onClick={hideSideMenu} style={{
         opacity: toggle ? 1 : 0,
-        visibility: toggle ? "visible" : "hidden"
+        visibility: toggle ? "visible" : "hidden",
+        zIndex: 9999
       }}>
         <div onClick={(e) => {
           e.stopPropagation();

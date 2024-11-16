@@ -9,7 +9,7 @@ export default function Category() {
     const [category,setCategory] = useState([]);
 
     //State to store the slider 
-    const [slide, setSlide] = useState([0]);
+    const [slide, setSlide] = useState(0);
 
     // Function to fetch category data from the MealDB API
     const fetchCategory = async () => {
@@ -24,11 +24,15 @@ export default function Category() {
     }
 
     const nextSlide = () => {
-        setSlide(slide - 3);
+        if(slide>=7) return false;
+        setSlide(slide + 3);
+        console.log(slide + 3)
+        console.log(category.length);
     }
 
     const prevSlide = () => {
-        setSlide(slide + 3);
+        if(slide === 0) return false;
+        setSlide(slide - 3);
     }
 
     // useEffect to call the fetchCategory function when the component mounts
@@ -40,15 +44,15 @@ export default function Category() {
 
   return (
     <>
-    <div className='max-w-[1200px] border border-red-500 mx-auto'>
-        <div className='flex my-3 items-center justify-between border border-blue-500'>
+    <div className='max-w-[1200px] mx-auto'>
+        <div className='flex my-6 items-center justify-between'>
             <div className='text-[20px] font-bold'>What's on your mind? </div>
-            <div className='flex border border-blue-500'>
-                <div className='cursor-pointer flex items-center justify-center w-[30px] h-[30px] bg-[#02060c26] rounded-full mx-2' onClick={nextSlide}><FaArrowLeft /></div>
-                <div className='cursor-pointer flex items-center justify-center w-[30px] h-[30px] bg-[#02060c26] rounded-full mx-2' onClick={prevSlide}><FaArrowRight /></div>
+            <div className='flex'>
+                <div className='cursor-pointer flex items-center justify-center w-[30px] h-[30px] bg-[#02060c26] rounded-full mx-2' onClick={prevSlide}><FaArrowLeft /></div>
+                <div className='cursor-pointer flex items-center justify-center w-[30px] h-[30px] bg-[#02060c26] rounded-full mx-2' onClick={nextSlide}><FaArrowRight /></div>
             </div>
         </div>
-        <div className='flex border border-green-500'>
+        <div className='flex overflow-hidden'>
             {
                 category.map(
                     (cat,index) => {
@@ -65,6 +69,7 @@ export default function Category() {
                 )
             }
         </div>
+        <hr className='my-10 border-[1px]' />
     </div>
     </>
   )
