@@ -25,7 +25,7 @@ export default function OnlineDelivery() {
             <div className='flex my-6 items-center justify-between'>
                 <div className='text-[20px] font-bold'>Restaurants with online food delivery in Pune</div>
             </div>
-            <div className="grid grid-cols-4 gap-3 border border-red-500" >
+            <div className="grid grid-cols-4 gap-3" >
                 {
                     data.map(
                         (cat, index) => {
