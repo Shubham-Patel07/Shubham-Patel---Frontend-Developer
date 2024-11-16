@@ -38,6 +38,7 @@ export default function TopMenu() {
                     })
                 }
             </div>
+            <hr className='my-10 border-[1px]' />
         </div>
       )
 }
