@@ -39,14 +39,14 @@ export default function TopMenu() {
 
     return (
         <>
-            <div className='w-full h-full fixed duration-500' onClick={hideMenu} style={{
+            <div className='w-screen h-screen fixed top-0 left-0 black-overlay duration-500' onClick={hideMenu} style={{
                 opacity: shouldFetch ? 1 : 0,
                 visibility: shouldFetch ? "visible" : "hidden",
                 zIndex: 9999
             }}>
                 <div onClick={(e) => {
                     e.stopPropagation();
-                }} className='w-[500px] h-full max-w-[1000px] absolute duration-[400ms]'
+                }} className='max-w-[1200px] absolute duration-[400ms]'
                     style={{
                         top: '50%',
                         left: '50%',
@@ -54,7 +54,7 @@ export default function TopMenu() {
                         transition: 'transform 0.5s ease-in-out'
                     }}>
                     {selectedMeal && (
-                        <div className="p-8 bg-gray-50 rounded-lg shadow-lg border border-red-500">
+                        <div className="w-[500px] p-8 bg-gray-50 rounded-lg shadow-lg">
                             <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
                                 {selectedMeal.strMeal}
                             </h2>
@@ -73,7 +73,7 @@ export default function TopMenu() {
                             </div>
                             <button
                                 onClick={hideMenu}
-                                className="w-full mt-4 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                className="w-full mt-4 px-4 py-2 text-white bg-[#ff5200] hover:bg-[#ffa700] rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
                                 Close
                             </button>
