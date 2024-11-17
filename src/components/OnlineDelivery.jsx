@@ -92,11 +92,11 @@ export default function OnlineDelivery() {
                 ></div>
                 {/* DropDown */}
                 <div
-                    className="border p-4 rounded bg-white shadow-md absolute duration-500"
+                    className="border p-4 rounded bg-white shadow-md absolute duration-500 max-h-[400px] overflow-y-auto"
                     style={{
                         opacity: isFilterOpen ? 1 : 0,
                         visibility: isFilterOpen ? "visible" : "hidden",
-                        transform: isFilterOpen ? "translateY(0)" : "translateY(-10px)",
+                        transform: isFilterOpen ? "translateY(0)" : "translateY(-40px)",
                         zIndex: 9999,
                     }}
                 >
@@ -118,7 +118,7 @@ export default function OnlineDelivery() {
                     </div>
                     <button
                         onClick={handleFilter}
-                        className="px-4 py-2 bg-blue-500 text-white rounded mt-2"
+                        className="px-4 py-2 bg-blue-500 text-white rounded mt-2 bg-[#ff5200]"
                     >
                         Apply
                     </button>
