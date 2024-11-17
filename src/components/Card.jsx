@@ -20,14 +20,14 @@ export default function Card(props) {
   };
 
   return (
-    <div className='w-[273px] shrink-0 grow mb-5 cursor-pointer' onClick={handleClick}>
+    <div className={`${props.width} shrink-0 mb-5 cursor-pointer`} onClick={handleClick}>
       <div className='group h-[182px] rounded-[15px] overflow-hidden relative'>
         <img className=" group-hover:scale-110 duration-100 object-cover w-full h-full" src={props.strMealThumb} alt="" />
-        <div className='image-overlay absolute w-full h-full top-0 flex items-end p-2 text-[25px] font-bold text-white tracking-tighter'>
+        <div className='image-overlay absolute w-full h-full top-0 flex items-end p-2 text-[16px] md:text-[25px] font-bold text-white tracking-tighter'>
           Items at ₹179
         </div>
       </div>
-      <div className="mt-3 text-xl font-bold">
+      <div className="mt-3 text-md md:text-xl font-bold">
         {props.strMeal}
       </div>
       <div className='flex items-center'>
