@@ -14,15 +14,25 @@ export default function TopMenu() {
     const itemsPerPage = 3;
 
     const fetchTopMenu = async () => {
+        try{
         const response = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian");
         const dataApi = await response.json();
         setData(dataApi.meals)
+        }
+        catch (error) {
+            console.error("Failed to filter meals:", error.message);
+        }
     }
 
     const fetchDetails = async (mealName) => {
+        try{
         const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName);
         const dataApi = await response.json();
         setSelectedMeal(dataApi.meals[0])
+        }
+        catch (error) {
+            console.error("Failed to filter meals:", error.message);
+        }
     }
 
     useEffect(

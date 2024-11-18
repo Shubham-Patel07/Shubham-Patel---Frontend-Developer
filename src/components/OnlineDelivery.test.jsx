@@ -14,5 +14,5 @@ describe('OnlineDelivery Component with Real API', () => {
     // Check for another Area food item
     const anotherFoodItem = await screen.findByText('Spanish'); // Replace with another known item
     expect(anotherFoodItem).toBeInTheDocument();
-  });
+  }); 
 });
