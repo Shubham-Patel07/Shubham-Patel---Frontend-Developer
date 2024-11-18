@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Card from "./Card";
 import { MdOutlineFilterAlt } from "react-icons/md";
 import { RxCaretDown } from "react-icons/rx";
+import { fetchTopMenu, fetchAreas, fetchDetails, fetchFilteredMeals } from "../api/TopMenusApi";
+
 
 export default function OnlineDelivery() {
     const [data, setData] = useState([]); // Holds the list of all food items fetched from the API
@@ -32,59 +34,23 @@ export default function OnlineDelivery() {
         },
     ];
 
-    const fetchTopMenu = async () => {
-        try {
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian");
-        const dataApi = await response.json();
-        console.log("Top Menu Data: ", dataApi); // Debug
-        setData(dataApi.meals || []);
-        setFilteredData(dataApi.meals || []); // Set initial data
-    } catch (error) {
-        console.error("Failed to fetch top menu data:", error.message);
-    }
-    };
-
-    const fetchAreas = async () => {
-        try {
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
-        const areaData = await response.json();
-        console.log("Areas Data: ", areaData); // Debug
-        setAreas(areaData.meals || []);
-    } catch (error) {
-        console.error("Failed to fetch areas data:", error.message);
-    }
-    };
-
     const handleFilter = async () => {
-        try {
         if (selectedArea) {
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
-            const filteredMeals = await response.json();
-            console.log("Filtered Meals: ", filteredMeals); // Debug
-            setFilteredData(filteredMeals.meals || []);
+            try {
+                const filteredMeals = await fetchFilteredMeals(selectedArea);
+                setFilteredData(filteredMeals);
+            } catch (error) {
+                console.error("Failed to filter meals:", error.message);
+            }
         } else {
-            setFilteredData(data); // Reset to all meals if no area is selected
-        }
-    }catch (error) {
-            console.error("Failed to filter meals:", error.message);
+            setFilteredData(data);
         }
         setIsFilterOpen(false);
     };
 
-    const fetchDetails = async (mealName) => {
-        try {
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName);
-        const dataApi = await response.json();
-        setSelectedMeal(dataApi.meals[0])
-    } catch (error) {
-        console.error("Failed to fetch meal details:", error.message);
-        // Optionally, you can show an error message to the user here
-    }
-    }
-
     const handleClick = async (meal) => {
         setShouldFetch(true);
-        await fetchDetails(meal.strMeal);
+        setSelectedMeal(await fetchDetails(meal.strMeal));
     };
 
     const hideMenu = () => {
@@ -93,8 +59,19 @@ export default function OnlineDelivery() {
 
     // Run only once when the component mounts
     useEffect(() => {
-        fetchTopMenu();
-        fetchAreas();
+        const loadInitialData = async () => {
+            try {
+                const meals = await fetchTopMenu();
+                setData(meals);
+                setFilteredData(meals);
+
+                const areaData = await fetchAreas();
+                setAreas(areaData);
+            } catch (error) {
+                console.error("Error loading data:", error.message);
+            }
+        };
+        loadInitialData();
     }, []);
 
     return (

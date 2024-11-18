@@ -4,6 +4,8 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 
 import Card from "./Card"
 
+import { fetchTopMenu, fetchDetails } from '../api/TopMenusApi';
+
 export default function TopMenu() {
 
     const [data, setData] = useState([]);
@@ -13,37 +15,24 @@ export default function TopMenu() {
 
     const itemsPerPage = 3;
 
-    const fetchTopMenu = async () => {
-        try{
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian");
-        const dataApi = await response.json();
-        setData(dataApi.meals)
-        }
-        catch (error) {
-            console.error("Failed to filter meals:", error.message);
-        }
-    }
-
-    const fetchDetails = async (mealName) => {
-        try{
-        const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName);
-        const dataApi = await response.json();
-        setSelectedMeal(dataApi.meals[0])
-        }
-        catch (error) {
-            console.error("Failed to filter meals:", error.message);
-        }
-    }
 
     useEffect(
         () => {
-            fetchTopMenu();
+            const loadTopMenu = async () => {
+                try {
+                    const meals = await fetchTopMenu();
+                    setData(meals);
+                } catch (error) {
+                    console.error("Error loading top menu:", error.message);
+                }
+            };
+            loadTopMenu();
         }, []
     )
 
     const handleClick = async (meal) => {
         setShouldFetch(true);
-        await fetchDetails(meal.strMeal);
+        setSelectedMeal(await fetchDetails(meal.strMeal));
     };
 
     const hideMenu = () => {
