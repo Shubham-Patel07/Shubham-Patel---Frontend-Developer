@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-This app is live on [](https://shubham-patel-frontend-developer.vercel.app).
+This app is live on [LIVE](https://shubham-patel-frontend-developer.vercel.app).
 
 ## Available Scripts
 
