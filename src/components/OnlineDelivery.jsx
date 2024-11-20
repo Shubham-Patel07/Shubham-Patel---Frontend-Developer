@@ -122,7 +122,7 @@ export default function OnlineDelivery() {
                 ></div>
                 {/* DropDown */}
                 <div
-                    className="border p-4 rounded bg-white shadow-md absolute duration-500 max-h-[400px] overflow-y-auto"
+                    className="border px-4 rounded bg-white shadow-md absolute duration-500 max-h-[400px] overflow-y-auto border border-green-500"
                     style={{
                         opacity: isFilterOpen ? 1 : 0,
                         visibility: isFilterOpen ? "visible" : "hidden",
@@ -130,7 +130,7 @@ export default function OnlineDelivery() {
                         zIndex: 9999,
                     }}
                 >
-                    <div className="text-sm font-bold mb-2">Filter By Area:</div>
+                    <div className="text-sm font-bold  bg-white sticky top-0 z-10 h-[35px] flex items-end">Filter By Area:</div>
                     <div>
                         {areas.map((area, index) => (
                             <div key={index} className="flex items-center mb-2">
@@ -146,12 +146,18 @@ export default function OnlineDelivery() {
                             </div>
                         ))}
                     </div>
+                    <div
+                        className="sticky bottom-0 bg-white h-[60px]"
+                        style={{
+                            zIndex: 1000, // Ensure it stays above other dropdown content
+                        }}>
                     <button
                         onClick={handleFilter}
-                        className="px-4 py-2 bg-blue-500 text-white rounded mt-2 bg-[#ff5200]"
+                        className="px-4 py-2 text-white rounded bg-[#ff5200] w-full hover:scale-105 transform transition duration-300"
                     >
-                        Apply
+                    Apply
                     </button>
+                    </div>
                 </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
