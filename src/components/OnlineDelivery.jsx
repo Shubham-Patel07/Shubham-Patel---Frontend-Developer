@@ -122,7 +122,7 @@ export default function OnlineDelivery() {
                 ></div>
                 {/* DropDown */}
                 <div
-                    className="border px-4 rounded bg-white shadow-md absolute duration-500 max-h-[400px] overflow-y-auto border border-green-500"
+                    className="border px-4 rounded bg-white shadow-md absolute duration-500 max-h-[400px] overflow-y-auto"
                     style={{
                         opacity: isFilterOpen ? 1 : 0,
                         visibility: isFilterOpen ? "visible" : "hidden",
