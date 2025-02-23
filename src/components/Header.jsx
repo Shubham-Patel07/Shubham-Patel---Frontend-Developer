@@ -1,4 +1,4 @@
-import React from 'react';
+caimport React from 'react';
 
 //import icons
 import { RxCaretDown } from "react-icons/rx";
@@ -68,7 +68,7 @@ export default function Header() {
             <img src="images/logo.png" className='w-full' alt="" />
           </div>
           <div>
-            <span className='font-bold border-b-[3px] border-[black]'> Science City </span> Ahmedabad, Gujarat, India
+            <span className='font-bold border-b-[3px] border-[black]'> Sola </span> Gandhinagar, Gujarat, India
             <RxCaretDown onClick={showSideMenu} fontSize={25} className='inline text-[#ff5200]' />
           </div>
           <nav className='hidden md:flex list-none gap-10 ml-auto text-[18px] font-semibold'>
